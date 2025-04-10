@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_crm_lead_form_inherit_custom" model="ir.ui.view">
+        <field name="name">crm.lead.form.inherit.custom</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='lead_priority']" position="after">
+                <group string="References">
+                    <field name="co_one"/>
+                    <field name="co_two"/>
+                    <field name="source_id"/>
+                </group>
+                <group string="Product Related">
+                    <field name="product_id" options="{'no_create_edit': True, 'no_create': True}"/>
+                    <field name="qty"/>
+                    <field name="product_category"/>
+                    <field name="prodict_image" widget="image"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

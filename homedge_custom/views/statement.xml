@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="agency_invoice_statement">
+        <t t-call="web.html_container">
+            <html lang="en">
+                <head>
+                    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100;200;300;400;500;600;700;800;900" rel="stylesheet"/>
+                    <meta charset="UTF-8"/>
+                    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+                    <meta content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+                    <title>Agency Invoice Statement</title>
+                    <style>
+                            @media print {
+                                * {
+                                    print-color-adjust: exact;
+                                    -webkit-print-color-adjust: exact;
+                                }
+                            }
+
+                            html,
+                            body {
+                                height: 100%;
+                            }
+
+                            body {
+                                margin: 0;
+                                padding: 0;
+                                font-family: 'Lexend Deca';
+                                font-size: 16px;
+                            }
+
+                            table {
+                                width: 100%;
+                                border-spacing: 0;
+                                border-collapse: collapse;
+                            }
+
+                            table th,
+                            table td {
+                                vertical-align: middle;
+                            }
+
+                            .main-table {
+                                width: 100%;
+                                max-width: 1240px;
+                                margin: 0 auto;
+                                height: 100%;
+                                background-color: #FFFFFF;
+                                -webkit-text-size-adjust: 100%;
+                            }
+
+                            .main-table p {
+                                font-size: 16px;
+                                color: #000000;
+                                margin: 0;
+                                line-height: normal;
+                            }
+
+                            .main-table address {
+                                font-style: normal;
+                                font-size: 16px;
+                                color: #000000;
+                            }
+
+                            .main-table .gray {
+                                color: #757477;
+                            }
+
+                            .email_header {
+                                width: 100%;
+                                height: 75px;
+                                box-sizing: border-box;
+                                background-color: #FF5757;
+                                background-size: contain;
+                                text-align: left;
+                                padding: 20px 50px;
+                                font-size: 22px;
+                                color: #FFFFFF;
+                                font-weight: 900;
+                                letter-spacing: 2px;
+                                vertical-align: middle;
+                            }
+
+                            .email_topbody {
+                                background-color: #E5E5E5;
+                                padding: 18px 50px 12px 50px;
+                                width: 100%;
+                                vertical-align: top;
+                            }
+
+                            .table_second {
+                                border-collapse: separate;
+                                padding-top: 15px;
+                            }
+
+                            .email_footer {
+                                background-color: #463579;
+                                max-width: 1240px;
+                                margin-top: 300px;
+                                box-sizing: border-box;
+                                height: 62px;
+                                position: absolute;
+                                bottom: 0;
+                                left: 0;
+                                right: 0;
+                            }
+
+                            .footer_leftcol {
+                                padding: 0 50px;
+                                margin-top: 12px;
+                                margin-bottom: 10px;
+                                vertical-align: middle;
+                            }
+
+                            .footer_leftcol p {
+                                color: #FFFFFF;
+                                font-size: 16px;
+                                letter-spacing: .2px;
+                                font-weight: bold;
+                                margin-top: 2px;
+                            }
+
+                            .footer_leftcol a {
+                                font-size: 14px;
+                                color: #FFFFFF;
+                                text-decoration: none;
+                                font-weight: 500;
+                                outline: none;
+                            }
+
+                            .lightFont {
+                                font-weight: 200;
+                            }
+
+                            .footer_imgcol {
+                                text-align: right;
+                                width: 30%;
+                            }
+
+                            .footer_imgcol img {
+                                max-width: 50px;
+                                margin-top: 4.3px;
+                                padding-right: 50px;
+                            }
+                            .watermark {
+                                position: fixed;
+                                top: 40%;
+                                left: 28%;
+                                transform: translate(-50%, -50%);
+                                font-size: 140px;
+                                color: lightgray;
+                                opacity: 0.2;
+                                z-index: 0;
+                                pointer-events: none;
+                            }
+                    </style>
+                </head>
+                <!-- body -->
+                <body>
+                <table cellpadding="0" cellspacing="0" class="main-table" width="100%">
+                <thead>
+                    <tr>
+                        <!-- <th class="email_header" colspan="2" style="position: relative;">
+                            Agency Invoice Statement
+                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScyMDAnIGhlaWdodD0nNzUnIHZpZXdCb3g9JzAgMCAyMDAgNzUnIGZpbGw9J25vbmUnIHN0eWxlPScmIzEwOyc+PGcgb3BhY2l0eT0nMC4zJyBjbGlwLXBhdGg9J3VybCgjY2xpcDBfMTMwXzExNSknPjxwYXRoIGQ9J00xMDAuMDk4IDU2LjUxMDJDMTA5LjczIDU2LjUwMDEgMTE3LjUyOSA0OC42OTQ2IDExNy41MTkgMzkuMDc2MkMxMTcuNTA5IDI5LjQ1NzggMTA5LjY5MyAyMS42Njg3IDEwMC4wNjIgMjEuNjc4OEM5MC40MzA3IDIxLjY4ODggODIuNjMxMiAyOS40OTQzIDgyLjY0MTMgMzkuMTEyN0M4Mi42NTE0IDQ4LjczMTIgOTAuNDY3MiA1Ni41MjAzIDEwMC4wOTggNTYuNTEwMlonIGZpbGw9J3doaXRlJy8+PHBhdGggZD0nTTEzMC42MTQgMTEwLjI2NUMxMzAuNjE0IDExMC4yNjUgMTMwLjUyMSAxMTAuMjY1IDEzMC40NzUgMTEwLjI2NVY4OS41NTA3QzEzMC40NzUgODkuNTUwNyAxMzAuNTM3IDg5LjU1MDcgMTMwLjU4MyA4OS41NTA3QzE0MS42NTQgODkuNTUwNyAxNTAuNjI4IDgwLjU5NjMgMTUwLjYyOCA2OS41MzA0QzE1MC42MjggNTguNDY0NCAxNDEuNjU0IDQ5LjUyNTQgMTMwLjU4MyA0OS41MjU0QzExOS41MTIgNDkuNTI1NCAxMTAuNTM4IDU4LjQ3OTggMTEwLjUzOCA2OS41MzA0QzExMC41MzggNjkuNjA3NCAxMTAuNTM4IDY5LjY2OTEgMTEwLjUzOCA2OS43NDYxSDg5LjcwNzFDODkuNzA3MSA2OS42MzgyIDg5LjcyMjUgNjkuNTMwNCA4OS43MjI1IDY5LjQwNzFDODkuNzIyNSA1OC4zNTY2IDgwLjc0ODcgNDkuNDAyMSA2OS42Nzc4IDQ5LjQwMjFDNTguNjA3IDQ5LjQwMjEgNDkuNjMzMSA1OC4zNTY2IDQ5LjYzMzEgNjkuNDA3MUM0OS42MzMxIDgwLjQ1NzYgNTguNjA3IDg5LjQyNzQgNjkuNjc3OCA4OS40Mjc0QzY5LjY5MzIgODkuNDI3NCA2OS43MDg3IDg5LjQyNzQgNjkuNzM5NSA4OS40Mjc0VjExMC40NjVDNjkuNzM5NSAxMTAuNDY1IDY5LjYxNjIgMTEwLjQ2NSA2OS41NTQ1IDExMC40NjVDNTguNDgzNiAxMTAuNDY1IDQ5LjUwOTggMTE5LjQxOSA0OS41MDk4IDEzMC40N0M0OS41MDk4IDE0MS41MiA1OC40ODM2IDE1MC40OSA2OS41NTQ1IDE1MC40OUM4MC42MjUzIDE1MC40OSA4OS41OTkyIDE0MS41MzYgODkuNTk5MiAxMzAuNDdDODkuNTk5MiAxMzAuNDU1IDg5LjU5OTIgMTMwLjQyNCA4OS41OTkyIDEzMC40MDhIMTEwLjU2OUMxMTAuNjQ2IDE0MS4zOTcgMTE5LjU3NCAxNTAuMjkgMTMwLjU5OCAxNTAuMjlDMTQxLjYyMyAxNTAuMjkgMTUwLjY0MyAxNDEuMzM2IDE1MC42NDMgMTMwLjI3QzE1MC42NDMgMTE5LjIwNCAxNDEuNjY5IDExMC4yNjUgMTMwLjU5OCAxMTAuMjY1SDEzMC42MTRaJyBmaWxsPSd3aGl0ZScvPjxwYXRoIGQ9J000MC4yNDQ0IDU1LjE2NjNDNDguNjMyMyA1NS4xNjYzIDU1LjQzMjEgNDguMzc2NCA1NS40MzIxIDQwLjAwMDdDNTUuNDMyMSAzMS42MjUxIDQ4LjYzMjMgMjQuODM1MiA0MC4yNDQ0IDI0LjgzNTJDMzEuODU2NCAyNC44MzUyIDI1LjA1NjYgMzEuNjI1MSAyNS4wNTY2IDQwLjAwMDdDMjUuMDU2NiA0OC4zNzY0IDMxLjg1NjQgNTUuMTY2MyA0MC4yNDQ0IDU1LjE2NjNaJyBmaWxsPSd3aGl0ZScvPjxwYXRoIGQ9J003MC42MTg0IDE5LjIwOTdDNzUuODk4MSAxOS4yMDk3IDgwLjE3ODIgMTQuOTMxNSA4MC4xNzgyIDkuNjU0MTZDODAuMTc4MiA0LjM3Njc5IDc1Ljg5ODEgMC4wOTg2MzI4IDcwLjYxODQgMC4wOTg2MzI4QzY1LjMzODcgMC4wOTg2MzI4IDYxLjA1ODYgNC4zNzY3OSA2MS4wNTg2IDkuNjU0MTZDNjEuMDU4NiAxNC45MzE1IDY1LjMzODcgMTkuMjA5NyA3MC42MTg0IDE5LjIwOTdaJyBmaWxsPSd3aGl0ZScvPjxwYXRoIGQ9J00xOS4xODQ4IDcwLjU5MzJDMTkuMTk0OSA2NS4zMTU5IDE0LjkyMzEgNjEuMDI5NSA5LjY0MzM1IDYxLjAxOTRDNC4zNjM2NCA2MS4wMDkzIDAuMDc1MzY0OCA2NS4yNzkyIDAuMDY1MjI4NSA3MC41NTY2QzAuMDU1MDkyMSA3NS44MzM5IDQuMzI2OTMgODAuMTIwMyA5LjYwNjY1IDgwLjEzMDRDMTQuODg2NCA4MC4xNDA1IDE5LjE3NDYgNzUuODcwNiAxOS4xODQ4IDcwLjU5MzJaJyBmaWxsPSd3aGl0ZScvPjxwYXRoIGQ9J00xNTkuOTI2IDU1LjI3NDJDMTY4LjMxNCA1NS4yNzQyIDE3NS4xMTQgNDguNDg0NCAxNzUuMTE0IDQwLjEwODdDMTc1LjExNCAzMS43MzMgMTY4LjMxNCAyNC45NDMxIDE1OS45MjYgMjQuOTQzMUMxNTEuNTM4IDI0Ljk0MzEgMTQ0LjczOCAzMS43MzMgMTQ0LjczOCA0MC4xMDg3QzE0NC43MzggNDguNDg0NCAxNTEuNTM4IDU1LjI3NDIgMTU5LjkyNiA1NS4yNzQyWicgZmlsbD0nd2hpdGUnLz48cGF0aCBkPSdNMTM5LjA1IDkuNzIyMTRDMTM5LjA2IDQuNDQ0NzggMTM0Ljc4OCAwLjE1ODQyNiAxMjkuNTA5IDAuMTQ4Mjk0QzEyNC4yMjkgMC4xMzgxNjIgMTE5Ljk0MSA0LjQwODA5IDExOS45MyA5LjY4NTQ1QzExOS45MiAxNC45NjI4IDEyNC4xOTIgMTkuMjQ5MiAxMjkuNDcyIDE5LjI1OTNDMTM0Ljc1MiAxOS4yNjk0IDEzOS4wNCAxNC45OTk1IDEzOS4wNSA5LjcyMjE0WicgZmlsbD0nd2hpdGUnLz48cGF0aCBkPSdNMTk5Ljk0OCA3MC41NzgxQzE5OS45NTkgNjUuMzAwNyAxOTUuNjg3IDYxLjAxNDQgMTkwLjQwNyA2MS4wMDQzQzE4NS4xMjcgNjAuOTk0MSAxODAuODM5IDY1LjI2NCAxODAuODI5IDcwLjU0MTRDMTgwLjgxOSA3NS44MTg4IDE4NS4wOTEgODAuMTA1MSAxOTAuMzcgODAuMTE1M0MxOTUuNjUgODAuMTI1NCAxOTkuOTM4IDc1Ljg1NTUgMTk5Ljk0OCA3MC41NzgxWicgZmlsbD0nd2hpdGUnLz48L2c+PGRlZnM+PGNsaXBQYXRoIGlkPSdjbGlwMF8xMzBfMTE1Jz48cmVjdCB3aWR0aD0nMjAwJyBoZWlnaHQ9Jzc1JyBmaWxsPSd3aGl0ZScvPjwvY2xpcFBhdGg+PC9kZWZzPjwvc3ZnPg==" alt="Background Image" style="position: absolute; right: 30px; top: 0; bottom: 0; max-width: 200px; height: 75px;"/>
+                        </th> -->
+                    </tr>
+                </thead>
+                    <tbody>
+                    <tr>
+                        <td colspan="2" style="vertical-align: top;">
+                            <table class="inner_table">
+                                <tbody>
+                                <tr>
+                                    <td class="email_topbody" colspan="2">
+                                        <table class="table_first">
+                                            <tbody>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <p style="text-align: right; margin-bottom: 10px;">
+                                                        <span style="font-weight: 600;">Date:</span>
+                                                        <span class="lightFont"><t t-esc="today_date"/></span>
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="padding: 15px 50px 0 50px;">
+                                        <div style="padding: 0; margin-bottom: 10px;">
+                                            <span style="font-weight: 600; min-width: 160px; display: inline-block;">Commission statement <t t-esc="start_date"/> - <t t-esc="end_date"/></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="padding: 0 50px;">
+                                        <table class="gray" width="100%">
+                                            <tr>
+                                                <td style="padding: 0; vertical-align: middle; height: 42px;border-bottom: 1.5px solid #bdbdbd; color: #ff5757;">
+                                                    <strong>Date</strong>
+                                                </td>
+                                                <td style="padding: 0; vertical-align: middle; height: 42px;border-bottom: 1.5px solid #bdbdbd; color: #ff5757;">
+                                                    <strong>Order Ref</strong>
+                                                </td>
+                                                <td style="padding: 0; vertical-align: middle; height: 42px;border-bottom: 1.5px solid #bdbdbd; color: #ff5757;">
+                                                    <strong>Customer Address</strong>
+                                                </td>
+                                                <td style="padding: 0; vertical-align: middle; height: 42px;border-bottom: 1.5px solid #bdbdbd; color: #ff5757;">
+                                                    <strong>Order Value</strong>
+                                                </td>
+                                                <td style="padding: 0; vertical-align: middle; height: 42px;border-bottom: 1.5px solid #bdbdbd; color: #ff5757;">
+                                                    <strong>Commmision Value</strong>
+                                                </td>
+                                            </tr>
+                                            <t t-foreach="statement_rows" t-as="bill">
+                                            <tr class="lightFont">
+                                                <td style="padding: 12px 20px 12px 0; color: #000000; border-bottom: 1.5px solid #bdbdbd;" t-esc="bill['date_order']"/>
+                                                <td style="padding: 12px 20px 12px 0; color: #000000; border-bottom: 1.5px solid #bdbdbd;" t-esc="bill['property_ref']"/> 
+                                                <td style="padding: 12px 20px 12px 0; color: #000000; border-bottom: 1.5px solid #bdbdbd;" t-esc="bill['property_address']"/>
+                                                <td style="padding: 12px 20px 12px 0; color: #000000; border-bottom: 1.5px solid #bdbdbd;" t-esc="bill['amount_total']"/>
+                                                <td style="padding: 12px 20px 12px 0; color: #000000; border-bottom: 1.5px solid #bdbdbd;" t-esc="bill['gst']"/> 
+                                            </tr>
+                                            </t>
+                                            <tr>
+                                                <td style="padding: 12px 20px 12px 0; color: #000000; border-bottom: 1.5px solid #bdbdbd; ">
+
+                                                </td>
+                                                <td style="padding: 12px 20px 12px 0; color: #000000; border-bottom: 1.5px solid #bdbdbd; ">
+
+                                                </td>
+                                                <td style="padding: 12px 20px 12px 0; color: #000000; border-bottom: 1.5px solid #bdbdbd; ">
+
+                                                </td>
+                                                <td style="padding: 12px 20px 12px 0; color: #000000; border-bottom: 1.5px solid #bdbdbd; ">
+
+                                                </td>
+                                                <td style="padding: 12px 20px 12px 0; color: #000000; border-bottom: 1.5px solid #bdbdbd; font-weight: 600;text-align: right;">
+                                                    Total:
+                                                </td>
+                                                <td style="text-align: right; padding: 12px 0 12px 0; color: #000000; border-bottom: 1.5px solid #bdbdbd;" class="lightFont">
+                                                    $<t t-esc="total"/>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                </body>
+                <!-- body -->
+                </html>
+        </t>
+    </template>
+
+    <!-- Report Action -->
+    <record id="report_account_move_action_agency_invoice_statement" model="ir.actions.report">
+        <field name="name">Sensor_Agency_Invoice_Statement</field>
+        <field name="model">commission.report</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">commission_plan.agency_invoice_statement</field>
+        <field name="report_file">commission_plan.agency_invoice_statement</field>
+        <field name="print_report_name">'Agency_Invoice_Statement_%s' % (fields.Date.today().strftime('%b_%y').upper())</field>
+        <field name="binding_model_id" ref="model_commission_report" />
+        <field name="binding_type">report</field>
+    </record>
+</odoo>
