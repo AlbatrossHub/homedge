@@ -23,8 +23,6 @@ class Lead(models.Model):
     lead_from_india_mart = fields.Boolean('India Mart Lead')
     co_one = fields.Many2one('res.partner', string="Care of (Primary)", tracking=True)
     co_two = fields.Many2one('res.partner', string="Care of (Secondary)", tracking=True)
-    site_location = fields.Char(string="Google Map Location")
-    stage_name = fields.Char(related='stage_id.name')
 
     @api.model
     def _create_leads_form_india_mart(self):
