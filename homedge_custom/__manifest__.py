@@ -11,6 +11,8 @@
     "depends": ['sale_management', 'crm'],
     'data': [
         'views/crm_team_views.xml',
+        'views/menus_views.xml',
+        'views/crm_lead_views.xml',
         # 'data/lead_data.xml'
     ],
     'images': ['static/description/banner.jpg'],
