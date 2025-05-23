@@ -26,6 +26,17 @@ class Lead(models.Model):
     site_location = fields.Char(string="Google Map Location")
     stage_name = fields.Char(related='stage_id.name')
 
+    designing_required = fields.Boolean(string="Designing Required?")
+    site_measurement_required = fields.Boolean(string="Site Measurement Required?")
+    consultant_id = fields.Many2one('res.users', string="Consultant")
+    design_from_consultant = fields.Selection([
+        ('required', 'Required'),
+        ('not_required', 'Not required'),
+        ('request_sent', 'Request sent'),
+        ('design_received', 'Design received'),
+    ], string="Design from Consultant")
+    task_ids = fields.One2many('project.task', 'lead_id', string="Task Ids")  
+
     @api.model
     def _create_leads_form_india_mart(self):
         IST = pytz.timezone('Asia/Kolkata')

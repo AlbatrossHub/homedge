@@ -8,8 +8,9 @@
     'author': 'Albatross IT Consultancy',
     'company': 'Albatross IT Consultancy',
     'website': "https://www.albatross.work",
-    "depends": ['sale_management', 'crm'],
+    "depends": ['sale_management', 'crm', 'bi_crm_task'],
     'data': [
+        'data/project_data.xml',
         'views/crm_team_views.xml',
         'views/menus_views.xml',
         'views/crm_lead_views.xml',
