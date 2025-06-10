@@ -32,6 +32,8 @@
                 <field name="site_location" widget="url"/>
                 <field name="designing_required" />
                 <field name="site_measurement_required" />
+                <field name="boq_required" />
+                <field name="quote_required" />
             </xpath>
             <xpath expr="//group[@name='lead_partner']//field[@name='website']" position="after">
                 <field name="site_location" widget="url"/>
@@ -109,6 +111,14 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='partner_id']" position="after">
                 <div class="o_kanban_boolean_flags">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <label for="boq_required" style="margin: 0;">BOQ</label>
+                        <field name="boq_required" widget="boolean_toggle" options="{'clickable': False}"/>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <label for="quote_required" style="margin: 0;">Quotation</label>
+                        <field name="quote_required" widget="boolean_toggle" options="{'clickable': False}"/>
+                    </div>
                     <div style="display: flex; align-items: center; gap: 8px;">
                         <label for="designing_required" style="margin: 0;">Designing</label>
                         <field name="designing_required" widget="boolean_toggle" options="{'clickable': False}"/>

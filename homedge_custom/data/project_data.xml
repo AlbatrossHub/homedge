@@ -12,6 +12,16 @@
             <field name="user_id" ref="base.user_admin"/>
             <field name="stage_id" ref="project.project_project_stage_1"/>
         </record>
+        <record id="project_project_3" model="project.project">
+            <field name="name">BOQ</field>
+            <field name="user_id" ref="base.user_admin"/>
+            <field name="stage_id" ref="project.project_project_stage_1"/>
+        </record>
+        <record id="project_project_4" model="project.project">
+            <field name="name">Quotation</field>
+            <field name="user_id" ref="base.user_admin"/>
+            <field name="stage_id" ref="project.project_project_stage_1"/>
+        </record>
     </data>
 
 </odoo>

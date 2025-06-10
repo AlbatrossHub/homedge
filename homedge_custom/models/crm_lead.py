@@ -28,6 +28,8 @@ class Lead(models.Model):
 
     designing_required = fields.Boolean(string="Designing Required?")
     site_measurement_required = fields.Boolean(string="Site Measurement Required?")
+    boq_required = fields.Boolean(string="BOQ Required?")
+    quote_required = fields.Boolean(string="Quotation Required?")
     consultant_id = fields.Many2one('res.users', string="Consultant")
     design_from_consultant = fields.Selection([
         ('required', 'Required'),
